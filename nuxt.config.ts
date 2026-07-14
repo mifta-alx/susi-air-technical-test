@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       include: ["@lucide/vue"],
     },
   },
-  modules: ["@vite-pwa/nuxt"],
+  modules: ["@vite-pwa/nuxt", "@pinia/nuxt"],
   pwa: {
     strategies : "generateSW",
     registerType: "autoUpdate",
