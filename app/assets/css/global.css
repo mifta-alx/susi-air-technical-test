@@ -30,6 +30,6 @@
 
 @layer base {
   body {
-    @apply bg-background font-main antialiased;
+    @apply bg-background font-main antialiased text-primary;
   }
 }

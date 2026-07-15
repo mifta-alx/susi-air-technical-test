@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "New Operations Policy for Papua Base Effective Next Week",
+    "category": "Operations",
+    "date": "Jul 15, 2026",
+    "image": "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": 2,
+    "title": "Fleet Maintenance Schedule: C208B Grand Caravan Updates",
+    "category": "Maintenance",
+    "date": "Jul 12, 2026",
+    "image": "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": 3,
+    "title": "Safety Notice: Weather Precautions During Monsoon Season",
+    "category": "Safety",
+    "date": "Jul 10, 2026",
+    "image": "https://images.unsplash.com/photo-1432057322224-8916b9ed202a?w=500&auto=format&fit=crop&q=60"
+  }
+]

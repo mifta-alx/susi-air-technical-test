@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "flight_number": "EX-214",
+    "date": "2026-05-31",
+    "date_display": "May 31, 2026",
+    "aircraft_type": "C208B",
+    "duration": "1h 15m",
+    "departure": {
+      "code": "SOQ",
+      "city": "Sorong",
+      "time": "07:30 AM"
+    },
+    "arrival": {
+      "code": "MKW",
+      "city": "Manokwari",
+      "time": "08:45 AM"
+    }
+  }
+]

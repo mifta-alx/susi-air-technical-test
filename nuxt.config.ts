@@ -10,7 +10,12 @@ export default defineNuxtConfig({
       include: ["@lucide/vue"],
     },
   },
-  modules: ["@vite-pwa/nuxt", "@pinia/nuxt"],
+  modules: ["@vite-pwa/nuxt", "@pinia/nuxt", "@nuxt/image", "nuxt-echarts"],
+  echarts: {
+    renderer: 'canvas',
+    charts: ['LineChart'],
+    components: ['DatasetComponent', 'GridComponent', 'TooltipComponent', 'MarkLineComponent']
+  },
   pwa: {
     strategies : "generateSW",
     registerType: "autoUpdate",
@@ -46,7 +51,7 @@ export default defineNuxtConfig({
       installPrompt: true,
     },
     devOptions: {
-      enabled: true,
+      enabled: false,
       suppressWarnings: true,
       navigateFallback: "/",
       navigateFallbackAllowlist: [/^\/$/],

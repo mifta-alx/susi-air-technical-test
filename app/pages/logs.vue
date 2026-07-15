@@ -3,9 +3,8 @@ definePageMeta({
   layout: "main-layout",
 });
 </script>
-
 <template>
   <div>
-    <h1 class="">SCHEDULE</h1>
+    
   </div>
 </template>
