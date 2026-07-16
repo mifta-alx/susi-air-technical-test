@@ -3,6 +3,7 @@
 const props = defineProps<{
   name: string;
   totalHours: number;
+  src?: string;
 }>();
 
 const route = useRoute();
@@ -65,7 +66,7 @@ onUnmounted(() => {
 
     <div class="flex items-center gap-3">
       <NotificationButton />
-      <UiAvatar :name="name" />
+      <UiAvatar :name="name" :src="src" />
     </div>
   </header>
 </template>

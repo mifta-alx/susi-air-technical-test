@@ -16,7 +16,7 @@ const initials = computed(() => {
 
 <template>
   <div
-    class="border-secondary/10 bg-surface flex items-center justify-center border size-12 rounded-xl select-none"
+    class="border-secondary/10 bg-surface flex items-center justify-center border size-12 rounded-xl overflow-hidden select-none"
   >
     <img v-if="src" :src="src" :alt="name" class="w-full h-full object-cover" />
 

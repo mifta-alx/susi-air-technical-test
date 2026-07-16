@@ -7,11 +7,12 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div
+  <NuxtLink
     v-if="data"
-    class="bg-surface border border-secondary/10 rounded-2xl p-5 w-full select-none"
+    href="/"
+    class="bg-surface border border-secondary/10 rounded-2xl p-5 w-full select-none flex flex-col gap-5 active:scale-[0.98] transition-all duration-300"
   >
-    <div class="flex justify-between items-center mb-5">
+    <div class="flex justify-between items-center">
       <div class="flex flex-col text-left">
         <span class="text-[10px] font-medium text-secondary/80">
           Upcoming Flight
@@ -79,18 +80,16 @@ const props = defineProps<{
     </div>
 
     <div
-      class="flex justify-between items-center border-t border-dashed border-secondary/20 pt-4 mt-4"
+      class="flex justify-between items-center"
     >
       <div class="flex gap-1.5 items-center">
-        <Calendar class="size-4 text-secondary/70" />
         <span
           class="text-xs text-secondary/70 font-medium tracking-tight"
           >{{ data.date_display }}</span
         >
       </div>
-      <NuxtLink class="text-brand text-xs font-semibold tracking-tight" href="/">See detail</NuxtLink>
     </div>
-  </div>
+  </NuxtLink>
   <div
     v-else
     class="text-xs text-secondary p-4 bg-surface rounded-xl border border-dashed border-secondary/20 text-center"
