@@ -34,3 +34,53 @@
     @apply bg-background font-main antialiased text-primary;
   }
 }
+
+/* header animation scroll */
+@supports (animation-timeline: scroll()) {
+  .header-scroll {
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    box-shadow: none;
+
+    animation: header-fade-in linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0px 50px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+    animation: header-title-shrink linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0px 50px;
+  }
+
+  @keyframes header-fade-in {
+    to {
+      background-color: var(--color-surface, #ffffff); 
+      backdrop-filter: blur(12px);
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  @keyframes header-title-shrink {
+    to {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .header-scroll[data-scrolled="true"] {
+    @apply py-5 bg-surface backdrop-blur-md shadow-sm;
+  }
+  .header-scroll[data-scrolled="true"] .header-title {
+    @apply text-xl;
+  }
+  .header-scroll[data-scrolled="false"] {
+    @apply pt-10 bg-transparent;
+  }
+}

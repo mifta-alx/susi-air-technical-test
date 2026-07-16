@@ -9,6 +9,23 @@
     "count_schedules": "Total flights/duties planned for the day. Drives the number badge at the top right of the calendar day cell.",
     "count_logbooks": "Flights/duties already logged. When count_logbooks === count_schedules, show a tick icon instead of the number badge."
   },
+  "upcomingFlights": {
+    "flight_number": "EX-214",
+    "date": "2026-05-31",
+    "date_display": "May 31, 2026",
+    "aircraft_type": "C208B",
+    "duration": "1h 15m",
+    "departure": {
+      "code": "HLP",
+      "city": "Jakarta",
+      "time": "07:30 AM"
+    },
+    "arrival": {
+      "code": "CJN",
+      "city": "Pangandaran",
+      "time": "08:45 AM"
+    }
+  },
   "legend": [
     {
       "code": "DTY",

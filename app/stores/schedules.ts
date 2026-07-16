@@ -1,22 +1,35 @@
 import { defineStore } from "pinia";
-import initialFlightHoursData from "~/data/mock-flight-hours.json";
-import upcomingFlightsData from "~/data/mock-upcoming-flights.json";
-import type { FlightDetail, FlightHoursData } from "~/types/flight";
+import initialSchedulesData from "~/data/mock-schedules.json";
+import type { FlightDashboardData } from "~/types/schedules";
 
 export const useScheduleStore = defineStore("schedules", {
   state: () => ({
-    schedules: initialFlightHoursData as FlightHoursData,
-    upcomingFlights: upcomingFlightsData as FlightDetail[],
+    ...(structuredClone(initialSchedulesData) as FlightDashboardData),
+    loading: true,
   }),
 
+  actions: {
+    async fetchSchedules() {
+      this.loading = true;
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      this.loading = false;
+    },
+  },
+
   getters: {
-    getPilot: (state) => state.schedules.pilot,
     upcomingSchedule: (state) => {
       const timeStore = useTimeStore();
-      const todayStr = timeStore.chartToday;
-      return (
-        state.upcomingFlights.find((flight) => flight.date === todayStr) || null
-      );
+      const todayStr = timeStore.today;
+      return state.upcomingFlights.date === todayStr
+        ? state.upcomingFlights
+        : null;
+    },
+    schedulesMap: (state) => {
+      const map = new Map();
+      state.schedules.forEach((item) => {
+        map.set(item.duty_date, item);
+      });
+      return map;
     },
   },
 });

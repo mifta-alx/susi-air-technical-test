@@ -1,14 +1,22 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
+import mockDocumentsData from "~/data/mock-documents.json";
 
-export const useTimeStore = defineStore('time', () => {
-  const documentStore = useDocumentStore()
-  // const scheduleStore = useScheduleStore()
+export const useTimeStore = defineStore("time", () => {
+  const today = ref<string>(mockDocumentsData.today || "2026-05-31");
 
-  const chartToday = computed(() => documentStore.today || '2026-05-31')
-  // const scheduleToday = computed(() => scheduleStore.today || '2026-05-15')
+  const year = computed<string>(() => {
+    const parts = today.value.split("-");
+    return parts[0] ?? "2026";
+  });
+
+  const month = computed<string>(() => {
+    const parts = today.value.split("-");
+    return parts[1] ?? "05";
+  });
 
   return {
-    chartToday,
-    // scheduleToday
-  }
-})
+    today,
+    year,
+    month
+  };
+});
