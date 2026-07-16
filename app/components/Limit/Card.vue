@@ -13,7 +13,7 @@ const percentageNumber = computed(() => {
 const percentageDisplay = computed(() => percentageNumber.value.toFixed(0));
 
 const barColor = computed(() => {
-  if (percentageNumber.value >= 100) return "bg-brand"; 
+  if (percentageNumber.value >= 90) return "bg-brand"; 
   if (percentageNumber.value >= 75) return "bg-warning";
   return "bg-success";
 });

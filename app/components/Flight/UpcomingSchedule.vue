@@ -29,19 +29,11 @@ const props = defineProps<{
     </div>
 
     <div class="flex justify-between items-center relative">
-      <div class="flex flex-col flex-1 gap-0.5">
-        <span class="text-[22px] font-semibold text-primary leading-none mb-1">
-          {{ data.departure.code }}
-        </span>
-        <span
-          class="text-[11px] text-secondary/70 font-medium tracking-tight truncate"
-        >
-          {{ data.departure.city }}
-        </span>
-        <span class="text-[10px] text-secondary/70 font-medium tracking-tight">
-          {{ data.departure.time }}
-        </span>
-      </div>
+      <FlightStationInfo
+        :city="data.departure.city"
+        :code="data.departure.code"
+        :time="data.departure.time"
+      />
 
       <div
         class="flex flex-col items-center justify-center flex-1 h-14 relative select-none"
@@ -78,28 +70,25 @@ const props = defineProps<{
         </span>
       </div>
 
-      <div class="flex flex-col flex-1 gap-0.5 text-right">
-        <span class="text-[22px] font-semibold text-primary leading-none mb-1">
-          {{ data.arrival.code }}
-        </span>
-        <span
-          class="text-[11px] text-secondary/70 font-medium tracking-tight truncate"
-        >
-          {{ data.arrival.city }}
-        </span>
-        <span class="text-[10px] text-secondary/70 font-medium tracking-tight">
-          {{ data.arrival.time }}
-        </span>
-      </div>
+      <FlightStationInfo
+        :city="data.arrival.city"
+        :code="data.arrival.code"
+        :time="data.arrival.time"
+        position="right"
+      />
     </div>
 
     <div
-      class="flex gap-1.5 items-center border-t border-dashed border-secondary/20 pt-4 mt-4"
+      class="flex justify-between items-center border-t border-dashed border-secondary/20 pt-4 mt-4"
     >
-      <Calendar class="size-3.5 text-secondary/70" />
-      <span class="text-[10px] text-secondary/70 font-medium tracking-tight">{{
-        data.date_display
-      }}</span>
+      <div class="flex gap-1.5 items-center">
+        <Calendar class="size-4 text-secondary/70" />
+        <span
+          class="text-xs text-secondary/70 font-medium tracking-tight"
+          >{{ data.date_display }}</span
+        >
+      </div>
+      <NuxtLink class="text-brand text-xs font-semibold tracking-tight" href="/">See detail</NuxtLink>
     </div>
   </div>
   <div

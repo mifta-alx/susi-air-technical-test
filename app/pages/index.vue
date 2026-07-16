@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { FlightDetail } from '~/types/flight';
+import type { FlightDetail } from "~/types/flight";
 
 definePageMeta({
   layout: "main-layout",
+  title: "Home"
 });
 useSeoMeta({
   title: "Home - Susi Air Operations Tool",
@@ -15,14 +16,11 @@ const newsStore = useNewsStore();
 const scheduleStore = useScheduleStore();
 
 const thisDay = computed(() => timeStore.chartToday);
-const pilotName = computed(() => flightStore.getPilot?.name || "Pilot");
 const limitCards = computed(() => flightStore.getLimitCardsData || []);
 const processedDocuments = computed(
   () => documentsStore.getProcessedDocuments || [],
 );
-const listNews = computed(
-  () => newsStore.latestNews || [],
-);
+const listNews = computed(() => newsStore.latestNews || []);
 const upcomingSchedule = computed<FlightDetail | null>(
   () => scheduleStore.upcomingSchedule || null,
 );
@@ -30,15 +28,13 @@ const upcomingSchedule = computed<FlightDetail | null>(
 
 <template>
   <div class="flex flex-col gap-4 w-full">
-    <div class="flex items-center justify-between gap-2 w-full">
-      <Avatar src="/android-chrome-512x512.png" />
-      <NotificationButton />
-    </div>
-    <h1 class="text-2xl font-bold tracking-tight text-primary">Welcome back</h1>
-    <h3>{{ pilotName }}</h3>
-    <FlightUpcomingSchedule :data="upcomingSchedule"/>
+    <FlightUpcomingSchedule :data="upcomingSchedule" />
     <div>
-      <SectionHeader title="Latest News" :description="formatDate(thisDay)" url-cta="/" />
+      <SectionHeader
+        title="Latest News"
+        :description="formatDate(thisDay)"
+        url-cta="/"
+      />
       <NewsList :data="listNews" />
     </div>
     <div>

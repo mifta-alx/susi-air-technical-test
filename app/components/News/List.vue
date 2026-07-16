@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <div class="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
     <div
-      class="flex gap-4 overflow-x-auto no-scrollbar px-4 snap-x snap-mandatory pb-2"
+      class="flex gap-4 overflow-x-auto no-scrollbar px-5 snap-x snap-mandatory pb-2"
     >
       <div
         v-for="news in data"
