@@ -47,7 +47,7 @@ onUnmounted(() => {
       </span>
       <template v-if="loading && isDashboard">
         <div class="w-28 h-8 rounded-lg bg-secondary/10 animate-pulse" />
-        <div class="w-40 h-3 rounded-lg bg-secondary/10 animate-pulse mt-1" />
+        <div class="w-40 h-3 rounded-sm bg-secondary/10 animate-pulse mt-1" />
       </template>
       <template v-else>
         <h1
@@ -72,7 +72,7 @@ onUnmounted(() => {
     </div>
 
     <div class="flex items-center gap-3">
-      <NotificationButton />
+      <NotificationButton :loading="loading" />
       <UiAvatar :name="name" :src="src" :loading="loading" />
     </div>
   </header>

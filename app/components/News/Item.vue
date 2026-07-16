@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import type { NewsItem } from '~/types/news';
+import type { NewsItem } from "~/types/news";
 
 const props = defineProps<{
   news: NewsItem;
 }>();
 </script>
+
 <template>
   <NuxtLink
     href="/"

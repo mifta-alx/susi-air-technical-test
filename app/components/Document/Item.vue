@@ -9,16 +9,13 @@ import {
 } from "@lucide/vue";
 import type { DocumentStatus } from "~/types/documents.js";
 
-const props = withDefaults(
-  defineProps<{
-    id: string;
-    label: string;
-    expiryDate: string;
-    daysRemaining: number;
-    status: DocumentStatus;
-  }>(),
-  {},
-);
+const props = defineProps<{
+  id: string;
+  label: string;
+  expiryDate: string;
+  daysRemaining: number;
+  status: DocumentStatus;
+}>();
 
 const getDocIcon = (id: string) => {
   switch (id) {
@@ -51,7 +48,6 @@ const expiryText = computed(() => {
 
   return `Expires in ${props.daysRemaining} days`;
 });
-
 </script>
 
 <template>
@@ -69,8 +65,10 @@ const expiryText = computed(() => {
         <component :is="getDocIcon(id)" class="size-5 stroke-[1.5px]" />
       </div>
       <div class="space-y-1">
-          <p class="text-sm font-semibold">{{ label }}</p>
-        <p class="text-[10px] font-medium text-secondary/80">{{ expiryText }}</p>
+        <p class="text-sm font-semibold">{{ label }}</p>
+        <p class="text-[10px] font-medium text-secondary/80">
+          {{ expiryText }}
+        </p>
       </div>
     </div>
     <DocumentBadge :status="status" />

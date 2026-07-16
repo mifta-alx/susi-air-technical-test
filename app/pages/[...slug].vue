@@ -42,7 +42,7 @@ const pageName = computed(() => {
       <h1 class="text-xl font-bold text-primary tracking-tight mb-2">
         {{ pageName }} Module
       </h1>
-      <p class="text-xs text-secondary/60 leading-relaxed max-w-[240px] mb-6">
+      <p class="text-xs text-secondary/60 leading-relaxed max-w-60 mb-6">
         This section is currently being calibrated for your flight logs. We'll be cleared for takeoff soon.
       </p>
 

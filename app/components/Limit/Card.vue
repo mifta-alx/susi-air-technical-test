@@ -2,8 +2,8 @@
 const props = defineProps<{
   label: string;
   current: number;
-  limit: number
-}>()
+  limit: number;
+}>();
 
 const percentageNumber = computed(() => {
   if (props.limit === 0) return 0;
@@ -13,14 +13,16 @@ const percentageNumber = computed(() => {
 const percentageDisplay = computed(() => percentageNumber.value.toFixed(0));
 
 const barColor = computed(() => {
-  if (percentageNumber.value >= 90) return "bg-brand"; 
+  if (percentageNumber.value >= 90) return "bg-brand";
   if (percentageNumber.value >= 75) return "bg-warning";
   return "bg-success";
 });
 </script>
 
 <template>
-  <div class="bg-surface border border-secondary/10 p-4 flex flex-col gap-2 rounded-xl">
+  <div
+    class="bg-surface border border-secondary/10 p-4 flex flex-col gap-2 rounded-xl"
+  >
     <div class="flex justify-between items-center">
       <span class="text-xs text-secondary font-medium">{{ label }}</span>
       <span class="text-xs font-bold">{{ percentageDisplay }}%</span>
