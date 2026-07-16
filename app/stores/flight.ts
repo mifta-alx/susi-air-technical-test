@@ -3,12 +3,19 @@ import initialFlightHoursData from "~/data/mock-flight-hours.json";
 import type { FlightHoursData } from "~/types/flight";
 
 export const useFlightStore = defineStore("flights", {
-  state: () => structuredClone(initialFlightHoursData) as FlightHoursData,
-
+  state: () => ({
+    ...structuredClone(initialFlightHoursData) as FlightHoursData,
+    loading: true,
+  }),
+  actions: {
+    async initData() {
+      this.loading = true;
+      await new Promise(resolve => setTimeout(resolve, 600));
+      this.loading = false;
+    },
+  },
   getters: {
     getPilot: (state) => state.pilot,
-    getLimits: (state) => state.limits,
-    getChartBounds: (state) => state.chartBounds,
     getFlightHours: (state) => state.flightHours,
 
     getLimitCardsData: (state) => {

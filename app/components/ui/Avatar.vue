@@ -2,6 +2,7 @@
 const props = defineProps<{
   name: string;
   src?: string;
+  loading: boolean;
 }>();
 
 const initials = computed(() => {
@@ -15,7 +16,8 @@ const initials = computed(() => {
 </script>
 
 <template>
-  <div
+  <div v-if="loading" class="size-12 rounded-xl bg-secondary/10 animate-pulse"/>
+  <div v-else
     class="border-secondary/10 bg-surface flex items-center justify-center border size-12 rounded-xl overflow-hidden select-none"
   >
     <img v-if="src" :src="src" :alt="name" class="w-full h-full object-cover" />

@@ -116,7 +116,7 @@ const totalActiveDays = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5 w-full max-w-md mx-auto px-1">
+  <div class="flex flex-col w-full">
     <ScheduleCalendarCard :loading="scheduleStore.loading">
       <ScheduleCalendarNavigation
         :current-month="currentMonth"
