@@ -11,13 +11,9 @@ export const useFlightStore = defineStore("flights", {
     getChartBounds: (state) => state.chartBounds,
     getFlightHours: (state) => state.flightHours,
 
-    getTotalHours: (state) => {
-      return state.flightHours.reduce((sum, item) => sum + item.hours, 0);
-    },
-
     getLimitCardsData: (state) => {
       const timeStore = useTimeStore();
-      const todayStr = timeStore.chartToday;
+      const todayStr = timeStore.today;
 
       const flightLogs = state.flightHours || [];
       const limits = state.limits;

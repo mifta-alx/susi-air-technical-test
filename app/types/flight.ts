@@ -1,6 +1,7 @@
 export interface PilotInfo {
   name: string;
   totalFlightHours: number;
+  avatarSrc: string;
 }
 
 export interface FlightLimits {
@@ -35,15 +36,4 @@ export interface FlightHoursData {
   limits: FlightLimits;
   chartBounds: ChartBounds;
   flightHours: DailyFlightHour[];
-}
-
-export interface FlightDetail {
-  id: number;
-  flight_number: string;
-  date: string;
-  date_display: string;
-  aircraft_type: string;
-  duration: string;
-  departure: { code: string; city: string; time: string };
-  arrival: { code: string; city: string; time: string };
 }

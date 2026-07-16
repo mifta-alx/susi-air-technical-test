@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Calendar, Plane } from "@lucide/vue";
-import type { FlightDetail } from "~/types/flight";
+import { Plane } from "@lucide/vue";
+import type { UpcomingFlight } from "~/types/schedules";
 const props = defineProps<{
-  data: FlightDetail | null;
+  data: UpcomingFlight | null;
 }>();
 </script>
 

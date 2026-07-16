@@ -70,34 +70,34 @@ const chartDataValues = computed(() => {
 </script>
 
 <template>
-  <div
-    class="bg-surface p-5 rounded-2xl border border-slate-100 shadow-sm space-y-4"
-  >
-    <div>
-      <h3 class="text-sm font-bold text-primary tracking-tight">Flight Hours Trend</h3>
+  <div class="bg-surface p-5 rounded-2xl border border-secondary/10 space-y-4">
+    <!-- <div>
+      <h3 class="text-sm font-bold text-primary tracking-tight">
+        Flight Hours Trend
+      </h3>
       <p class="text-[11px] text-slate-400 mt-0.5">
         Rolling cumulative flight time analysis against regulatory caps.
       </p>
-    </div>
+    </div> -->
 
     <!-- Area Chart Canvas Container -->
     <div class="w-full h-64 block relative">
-      <FlightTrendChart
+      <!-- <FlightTrendChart
         :display-dates="displayDates"
         :chart-data-values="chartDataValues"
         :limit="currentConfig.limit"
         :y-max="currentConfig.yMax"
         :today-str="todayStr"
-      />
+      /> -->
     </div>
 
-    <UiToggleGroup>
-      <UiToggleItem
+    <FlightToggleGroup v-model="activeToggle" :options="['1w', '1m', '3m', '6m', '1y']">
+      <FlightToggleItem
         v-for="opt in ['1w', '1m', '3m', '6m', '1y'] as const"
         :key="opt"
         :value="opt"
         v-model="activeToggle"
       />
-    </UiToggleGroup>
+    </FlightToggleGroup>
   </div>
 </template>
