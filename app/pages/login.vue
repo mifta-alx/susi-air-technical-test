@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 
 definePageMeta({
   layout: false,
+  title: "Sign in"
 });
 
 useSeoMeta({

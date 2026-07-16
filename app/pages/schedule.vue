@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "main-layout",
+  title: "Schedule"
 });
 </script>
 
