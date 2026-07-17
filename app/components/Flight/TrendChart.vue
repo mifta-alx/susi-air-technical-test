@@ -22,7 +22,7 @@ const chartOption = computed(() => {
             : "";
         return `<div>
           <p class="text-[11px] text-secondary">${item.name}${isToday}</p>
-          <p class="text-sm font-bold mt-0.5">${item.value} hrs <span class="text-[10px] font-normal text-gray-500">rolling</span></p>
+          <p class="text-sm font-bold mt-0.5">${item.value} hrs <span class="text-[10px] font-normal text-secondary/70">rolling</span></p>
         </div>`;
       },
     },

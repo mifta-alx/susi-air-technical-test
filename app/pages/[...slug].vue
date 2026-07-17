@@ -5,6 +5,7 @@ definePageMeta({
   layout: "blank",
 });
 const route = useRoute();
+const router = useRouter();
 
 const pageName = computed(() => {
   const path = route.path.replace("/", "");
@@ -19,6 +20,10 @@ useSeoMeta({
   title: `${pageName.value} - Susi Air Operations`,
   ogTitle: `${pageName.value} - Susi Air Operations`,
 });
+
+const backToDashboard = () => {
+  router.push("/");
+};
 </script>
 
 <template>
@@ -40,11 +45,8 @@ useSeoMeta({
       This module is currently unavailable. Please check back later.
     </p>
 
-    <NuxtLink
-      to="/"
-      class="w-full py-2.5 bg-primary text-surface rounded-xl font-semibold text-sm active:scale-[0.98] transition-all duration-300"
-    >
+    <UiButton class="w-full" @click="backToDashboard">
       Return to Dashboard
-    </NuxtLink>
+    </UiButton>
   </div>
 </template>

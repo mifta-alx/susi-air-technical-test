@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 
 definePageMeta({
   layout: false,
-  title: "Sign in"
+  title: "Sign in",
 });
 
 useSeoMeta({
@@ -20,13 +20,8 @@ const showPassword = ref(false);
 const isLoading = ref(false);
 
 const handleLogin = () => {
-  if (!username.value || !password.value) return;
-
-  isLoading.value = true;
-  setTimeout(() => {
-    isLoading.value = false;
-    router.push("/");
-  }, 500);
+  useCookie("isLoggedIn").value = "true";
+  router.push("/");
 };
 </script>
 
@@ -34,10 +29,13 @@ const handleLogin = () => {
   <div
     class="min-h-screen bg-surface flex flex-col justify-start items-center px-5 pt-20"
   >
-    <div class="w-full max-w-md flex flex-col gap-4">
-      <NuxtImg src="/android-chrome-512x512.png" class="size-20" />
-      <h1 class="text-[22px] font-bold tracking-tight text-primary">Sign in</h1>
-
+    <div class="w-full max-w-md flex flex-col gap-5">
+      <NuxtImg src="/android-chrome-512x512.png" class="size-20 rounded-xl" />
+      <div>
+        <h1 class="text-[22px] font-bold tracking-tight text-primary">Operations Portal</h1>
+        <h1 class="text-xs font-medium tracking-tight text-secondary">Log in to manage flight telemetry and schedules</h1>
+      </div>
+      
       <form @submit.prevent="handleLogin" class="space-y-4">
         <UiInput
           id="username"
@@ -90,11 +88,19 @@ const handleLogin = () => {
         </div>
       </form>
 
-      <div class="text-center mt-6 pt-4 border-t border-background">
+      <div class="text-center mt-2 pt-4 border-t border-background">
         <p class="text-[11px] text-secondary leading-relaxed">
           Authorized personnel only. All operational activities inside this
           dispatch portal are logged under aviation safety regulations.
         </p>
+      </div>
+      <div class="text-center mt-2">
+        <a
+          href="mailto:crd@susiair.com"
+          class="text-[11px] text-primary underline underline-offset-2 hover:opacity-70"
+        >
+          Need help? Contact CRD
+        </a>
       </div>
     </div>
   </div>

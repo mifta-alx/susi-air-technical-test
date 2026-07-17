@@ -20,12 +20,7 @@ const emit = defineEmits<{
           Detailed schedule page is unavailable.
         </p>
       </div>
-      <button
-        @click="emit('closePlaceholder')"
-        class="w-full py-2.5 bg-primary text-surface rounded-xl font-semibold text-sm active:scale-[0.98] transition-all duration-300"
-      >
-        Dismiss
-      </button>
+      <UiButton class="w-full" @click="emit('closePlaceholder')">Dismiss</UiButton>
     </div>
   </div>
 </template>

@@ -41,7 +41,7 @@ const onInput = (e: Event) => {
     <label
       v-if="label"
       :for="id"
-      class="text-sm font-semibold tracking-tight text-gray-400"
+      class="text-sm font-semibold tracking-tight text-secondary/50"
     >
       {{ label }}
     </label>
@@ -49,7 +49,7 @@ const onInput = (e: Event) => {
     <div class="relative flex items-center group">
       <div
         v-if="$slots.left"
-        class="absolute left-4 z-0 flex items-center justify-center text-gray-400 group-focus-within:text-primary transition-colors pointer-events-none"
+        class="absolute left-4 z-0 flex items-center justify-center text-secondary/50 group-focus-within:text-primary transition-colors pointer-events-none"
       >
         <slot name="left" />
       </div>
@@ -66,8 +66,8 @@ const onInput = (e: Event) => {
         :autocomplete="autocomplete"
         :class="
           cn(
-            'w-full bg-background border border-gray-200 rounded-2xl py-3.5 text-sm font-normal outline-none transition-all',
-            'placeholder:text-gray-400/60 focus:border-primary/30 focus:ring-4 focus:ring-primary/10',
+            'w-full bg-background border border-secondary/20 rounded-xl py-3.5 text-sm font-normal outline-none transition-all',
+            'placeholder:text-secondary/50/60 focus:border-primary/30 focus:ring-4 focus:ring-primary/10',
             $slots.left ? 'pl-12' : 'pl-5',
             $slots.right ? 'pr-12' : 'pr-5',
             error &&
@@ -78,7 +78,7 @@ const onInput = (e: Event) => {
 
       <div
         v-if="$slots.right"
-        class="absolute right-4 z-10 flex items-center justify-center text-gray-400 group-focus-within:text-primary transition-colors"
+        class="absolute right-4 z-10 flex items-center justify-center text-secondary/50 group-focus-within:text-primary transition-colors"
       >
         <slot name="right" />
       </div>

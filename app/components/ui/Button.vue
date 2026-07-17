@@ -26,7 +26,7 @@ const variantClasses = {
 
 const buttonClasses = computed(() => {
   return cn(
-    "grow text-sm h-13 flex flex-row gap-2 justify-center items-center py-3.5 rounded-3xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
+    "text-sm h-12 flex flex-row gap-2 justify-center items-center py-3.5 rounded-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
     variantClasses[props.variant],
     attrs.class as string,
   );
