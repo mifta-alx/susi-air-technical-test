@@ -13,7 +13,7 @@ const legend = computed(() => scheduleStore.legend);
         class="size-2.5 rounded-full shrink-0"
         :style="{ backgroundColor: item.color }"
       />
-      <span class="text-xs text-primary/90 font-semibold tracking-tight uppercase leading-0">
+      <span class="text-xs text-primary/90 font-medium tracking-tight uppercase leading-0">
         {{ item.label }}
       </span>
     </div>

@@ -32,7 +32,7 @@ useSeoMeta({
       Coming soon
     </span>
 
-    <h1 class="text-xl font-bold text-[#0E2138] tracking-tight mb-3">
+    <h1 class="text-xl font-bold text-primary tracking-tight mb-3">
       "{{ pageName }}" is not available
     </h1>
 
