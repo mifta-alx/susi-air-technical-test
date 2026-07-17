@@ -56,11 +56,7 @@ const expiryText = computed(() => {
   >
     <div class="flex flex-row gap-2.5 items-center">
       <div
-        :class="
-          cn(
-            'rounded-lg size-12 items-center justify-center flex bg-secondary/10 text-secondary/80',
-          )
-        "
+        class="rounded-lg size-12 items-center justify-center flex bg-secondary/10 text-secondary/80"
       >
         <component :is="getDocIcon(id)" class="size-5 stroke-[1.5px]" />
       </div>

@@ -22,6 +22,7 @@ onMounted(async () => {
     flightStore.initData(),
     newsStore.fetchNews(),
     scheduleStore.fetchSchedules(),
+    documentsStore.fetchDocuments()
   ]);
   isLoading.value = false;
 });
@@ -46,16 +47,15 @@ const thisDay = computed(() => timeStore.today);
     <div>
       <SectionHeader title="Limit Summary" />
       <LimitSummary
-        :data="flightStore.getLimitCardsData"
+        :data="flightStore.getLimitCardsData(thisDay)"
         :loading="isLoading"
       />
     </div>
     <div>
       <SectionHeader
         title="Flight Hours Trend"
-        description="Rolling cumulative flight time analysis against regulatory caps."
       />
-      <!-- <FlightTrendCard /> -->
+      <FlightTrendCard :loading="isLoading" />
     </div>
     <div>
       <SectionHeader title="My Documents" />

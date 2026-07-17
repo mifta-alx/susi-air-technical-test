@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+const props = defineProps<{
+  loading: boolean;
+}>();
 
 type ToggleOption = "1w" | "1m" | "3m" | "6m" | "1y";
 
@@ -18,18 +20,15 @@ const CONFIG: Record<ToggleOption, ToggleConfig> = {
 };
 
 const flightStore = useFlightStore();
-const documentStore = useDocumentStore();
-const activeToggle = ref<ToggleOption>("1w");
+const timeStore = useTimeStore();
 
-// Ambil config aktif saat ini
+const activeToggle = ref<ToggleOption>("1w");
+const toggleOptions: ToggleOption[] = ["1w", "1m", "3m", "6m", "1y"];
+
 const currentConfig = computed(() => CONFIG[activeToggle.value]);
 
-// 1. Tanggal hari ini
-const todayStr = computed<string>(() => {
-  return documentStore?.today || new Date().toISOString().split("T")[0] || "";
-});
+const todayStr = computed(() => timeStore.today);
 
-// 2. Array 15 Hari untuk Sumbu X
 const displayDates = computed(() => {
   const dates: string[] = [];
   const baseDate = new Date(todayStr.value);
@@ -43,57 +42,36 @@ const displayDates = computed(() => {
   return dates;
 });
 
-// 3. Hitung Agregasi Rolling Sum
 const chartDataValues = computed(() => {
   const windowDays = currentConfig.value.windowDays;
-  const flightLogs = flightStore?.getFlightHours || [];
-
-  const hoursMap = new Map<string, number>();
-  flightLogs.forEach((log) => {
-    if (log && log.date) hoursMap.set(log.date, log.hours || 0);
-  });
-
   return displayDates.value.map((dateStr) => {
-    let totalSum = 0;
-    const targetDate = new Date(dateStr);
-    if (isNaN(targetDate.getTime())) return 0;
-
-    for (let i = 0; i < windowDays; i++) {
-      const d = new Date(targetDate);
-      d.setDate(targetDate.getDate() - i);
-      const lookupStr = d.toISOString().split("T")[0] || "";
-      totalSum += hoursMap.get(lookupStr) || 0;
-    }
-    return totalSum;
+    return flightStore.getCalculateRolling(dateStr, windowDays);
   });
 });
 </script>
 
 <template>
-  <div class="bg-surface p-5 rounded-2xl border border-secondary/10 space-y-4">
-    <!-- <div>
-      <h3 class="text-sm font-bold text-primary tracking-tight">
-        Flight Hours Trend
-      </h3>
-      <p class="text-[11px] text-slate-400 mt-0.5">
-        Rolling cumulative flight time analysis against regulatory caps.
-      </p>
-    </div> -->
-
-    <!-- Area Chart Canvas Container -->
+  <div
+    v-if="loading"
+    class="flex animate-pulse bg-secondary/10 h-88.5 w-full rounded-xl"
+  />
+  <div
+    v-else
+    class="bg-surface p-5 rounded-2xl border border-secondary/10 space-y-4"
+  >
     <div class="w-full h-64 block relative">
-      <!-- <FlightTrendChart
+      <FlightTrendChart
         :display-dates="displayDates"
-        :chart-data-values="chartDataValues"
+        :data="chartDataValues"
         :limit="currentConfig.limit"
         :y-max="currentConfig.yMax"
         :today-str="todayStr"
-      /> -->
+      />
     </div>
 
-    <FlightToggleGroup v-model="activeToggle" :options="['1w', '1m', '3m', '6m', '1y']">
+    <FlightToggleGroup v-model="activeToggle" :options="toggleOptions">
       <FlightToggleItem
-        v-for="opt in ['1w', '1m', '3m', '6m', '1y'] as const"
+        v-for="opt in toggleOptions"
         :key="opt"
         :value="opt"
         v-model="activeToggle"

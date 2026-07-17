@@ -1,64 +1,39 @@
 <script setup lang="ts">
-import { provide, computed } from 'vue';
-
 const modelValue = defineModel<string>({ required: true });
+const props = defineProps<{ options: string[] }>();
+provide("toggleContext", { modelValue });
 
-const props = defineProps<{
-  options: string[];
-}>();
+const containerRef = ref<HTMLElement | null>(null);
+const pillStyle = ref({ width: "0px", left: "0px" });
 
-// Sediakan state untuk dibaca oleh ToggleItem
-provide('toggleContext', {
-  modelValue,
-});
+const updatePill = () => {
+  if (!containerRef.value) return;
+  const index = props.options.indexOf(modelValue.value);
+  const buttons = containerRef.value.querySelectorAll("button");
+  const targetBtn = buttons[index];
+  if (targetBtn) {
+    pillStyle.value = {
+      width: `${targetBtn.offsetWidth}px`,
+      left: `${targetBtn.offsetLeft}px`,
+    };
+  }
+};
 
-// Cari tahu index mana yang sedang aktif
-const activeIndex = computed(() => props.options.indexOf(modelValue.value));
-
-// Kalkulasi gaya background menggunakan logika center anchor dari bottom nav kamu
-const pillStyle = computed(() => {
-  if (activeIndex.value === -1) return { width: '0%', left: '0%', opacity: 0 };
-
-  const totalTabs = props.options.length;
-  const tabWidth = 100 / totalTabs;
-
-  // Cari titik tengah dari tab yang aktif
-  const centerPosition = tabWidth * activeIndex.value + tabWidth / 2;
-
-  return {
-    // Lebar pill disesuaikan dengan lebar satu tab penuh (dikurangi kompensasi padding)
-    width: `calc(${tabWidth}% - 4px)`,
-    // Tembak koordinat ke titik tengah tab aktif
-    left: `${centerPosition}%`,
-    // Geser mundur -50% agar posisi pill pas sempurna di tengah tab tersebut
-    transform: 'translateX(-50%)',
-    opacity: 1,
-  };
-});
+watch(modelValue, updatePill, { flush: "post" });
+onMounted(updatePill);
 </script>
 
 <template>
   <div class="flex justify-center">
-    <!-- Menggunakan w-full dan max-w agar ukuran flex row terbagi rata sempurna lewat tombolnya -->
     <div
-      class="relative h-10 w-full max-w-xs flex flex-row bg-surface p-1 rounded-xl border border-secondary/20 isolate items-center"
+      ref="containerRef"
+      class="relative w-full flex bg-secondary/5 p-1 rounded-xl border border-secondary/20"
     >
-      <!-- Pill Background yang sliding mengikuti logika center posisi -->
       <div
-        class="absolute top-1 bottom-1 rounded-lg bg-primary border border-primary/10 transition-all duration-300 ease-in-out -z-10"
+        class="absolute top-1 bottom-1 rounded-lg bg-primary transition-all duration-300 ease-in-out"
         :style="pillStyle"
       />
-      
       <slot />
     </div>
   </div>
 </template>
-<!-- <template>
-  <div class="flex justify-center">
-    <div
-      class="relative h-10 flex flex-row bg-surface p-1 rounded-2xl border border-secondary/20 gap-1"
-    >
-     <slot/>
-    </div>
-  </div>
-</template> -->
